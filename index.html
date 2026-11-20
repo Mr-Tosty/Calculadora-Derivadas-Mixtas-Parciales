@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Divertida de Cálculo</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>Calculadora Mágica de Cálculo</h1>
+    <p>¡Aprende a derivar e integrar de forma fácil y divertida!</p>
+    <div class="help-cta-banner">
+      <strong>¿No sabes qué hacer?</strong> Haz clic en el botón circular <strong>[ ? ]</strong> flotante ubicado en la esquina superior derecha para ver la guía visual paso a paso. ↗
+    </div>
+  </header>
+
+  <main class="main-container">
+    <section class="card input-section">
+      <h2>Ingresa tu Función para devivar individual</h2>
+      <div class="input-group">
+        <label for="function-input">f(x) =</label>
+        <input type="text" id="function-input" placeholder="Ejemplo: 3*x^2 + 2*x + 5 o sin(x)" value="x^2">
+        <button id="btn-power" class="btn btn-power" title="Agregar exponente / potencia al último carácter">x^n (Potencia)</button>
+      </div>
+
+      <div class="quick-keys-grid">
+        
+        <div class="key-group">
+          <span class="key-label">Básicos:</span>
+          <button class="btn-key" data-insert="x">x</button>
+          <button class="btn-key" data-insert="+">+</button>
+          <button class="btn-key" data-insert="-">-</button>
+          <button class="btn-key" data-insert="*">*</button>
+          <button class="btn-key" data-insert="/">/</button>
+          <button class="btn-key" data-insert="(">(</button>
+          <button class="btn-key" data-insert=")">)</button>
+        </div>
+
+        <div class="key-group">
+          <span class="key-label">Potencias/Raíces:</span>
+          <button class="btn-key" data-insert="^2">x²</button>
+          <button class="btn-key" data-insert="^3">x³</button>
+          <button class="btn-key" data-insert="sqrt(">√x</button>
+          <button class="btn-key" data-insert="1/x">1/x</button>
+        </div>
+
+        <div class="key-group">
+          <span class="key-label">Constantes:</span>
+          <button class="btn-key" data-insert="pi">π</button>
+          <button class="btn-key" data-insert="e">e</button>
+          <button class="btn-key" data-insert="e^(">eˣ</button>
+          <button class="btn-key" data-insert="ln(">ln(x)</button>
+        </div>
+
+        <div class="key-group">
+          <span class="key-label">Trigonometría:</span>
+          <button class="btn-key" data-insert="sin(">sin</button>
+          <button class="btn-key" data-insert="cos(">cos</button>
+          <button class="btn-key" data-insert="tan(">tan</button>
+          <button class="btn-key" data-insert="cot(">cot</button>
+          <button class="btn-key" data-insert="sec(">sec</button>
+          <button class="btn-key" data-insert="csc(">csc</button>
+        </div>
+
+      </div>
+
+      <div class="options-group">
+        <div class="option">
+          <label for="operation-type">Operación:</label>
+          <select id="operation-type">
+            <option value="derivative">Derivar 📉</option>
+            <option value="integral">Integrar 📈</option>
+          </select>
+        </div>
+
+        <div class="option">
+          <label for="order-select">Orden (veces):</label>
+          <select id="order-select">
+            <option value="1">1ª Vez (Primera)</option>
+            <option value="2">2ª Vez (Segunda)</option>
+            <option value="3">3ª Vez (Tercera)</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="btn-calculate" class="btn btn-primary btn-calc">¡Calcular Ahora!</button>
+    </section>
+
+    <section class="card result-section">
+      <h2>2. Resultado y Explicación paso a paso</h2>
+      <div id="results-display" class="results-box">
+        <p class="placeholder-text">Haz clic en <strong>¡Calcular Ahora!</strong> para ver la magia.</p>
+      </div>
+
+      <div class="help-tooltip-box">
+        <button id="btn-toggle-help" class="btn btn-secondary">¿Cómo funciona esta regla?</button>
+        <div id="help-content" class="help-content hidden">
+          <h4> Reglas aplicadas según los Formularios:</h4>
+          <ul>
+          <ul>
+            <li><strong>Derivada de Potencias:</strong> d/dx(x^n) = n * x^(n-1)</li>
+            <li><strong>Integral de Potencias:</strong> ∫ x^n dx = (x^(n+1)) / (n+1) + C</li>
+            <li><strong>Constantes:</strong> Derivada de una constante k es 0; Integral de k es k * x + C.</li>
+            <li><strong>Trigonométricas:</strong> d/dx(sin(u)) = cos(u) * u' ; ∫ cos(u) du = sin(u) + C.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card mixed-section">
+      <h2> Derivadas Parciales Mixtas (x, y)</h2>
+      <div class="input-group">
+        <label for="mixed-function-input">f(x,y) =</label>
+        <input type="text" id="mixed-function-input" placeholder="Ej: x^2 * y + y^3" value="x^2 * y + y^3">
+      </div>
+
+      <div class="quick-keys-grid">
+        <div class="key-group">
+          <span class="key-label">Básicos:</span>
+          <button class="btn-key" data-insert="x">x</button>
+          <button class="btn-key" data-insert="y">y</button>
+          <button class="btn-key" data-insert="+">+</button>
+          <button class="btn-key" data-insert="-">-</button>
+          <button class="btn-key" data-insert="*">*</button>
+          <button class="btn-key" data-insert="/">/</button>
+          <button class="btn-key" data-insert="(">(</button>
+          <button class="btn-key" data-insert=")">)</button>
+        </div>
+        <div class="key-group">
+          <span class="key-label">Potencias/Raíces:</span>
+          <button class="btn-key" data-insert="^2">x²</button>
+          <button class="btn-key" data-insert="^3">x³</button>
+          <button class="btn-key" data-insert="^">xⁿ</button>
+          <button class="btn-key" data-insert="sqrt(">√x</button>
+          <button class="btn-key" data-insert="1/x">1/x</button>
+        </div>
+        <div class="key-group">
+          <span class="key-label">Constantes:</span>
+          <button class="btn-key" data-insert="pi">π</button>
+          <button class="btn-key" data-insert="e">e</button>
+          <button class="btn-key" data-insert="e^(">eˣ</button>
+          <button class="btn-key" data-insert="ln(">ln(x)</button>
+        </div>
+        <div class="key-group">
+          <span class="key-label">Trigonometría:</span>
+          <button class="btn-key" data-insert="sin(">sin</button>
+          <button class="btn-key" data-insert="cos(">cos</button>
+          <button class="btn-key" data-insert="tan(">tan</button>
+        </div>
+      </div>
+
+      <div class="options-group">
+        <div class="option" style="flex: 2;">
+          <label for="mixed-order-select">Combinación de Derivada (2do Orden):</label>
+          <select id="mixed-order-select">
+            <option value="dx2">Solo respecto a X (d²f / dx²)</option> 
+            <option value="dy2">Solo respecto a Y (d²f / dy²)</option> 
+            <option value="dydx">Mixta XY (Primero X, luego Y: d²f / dy dx)</option> 
+            <option value="dxdy">Mixta YX (Primero Y, luego X: d²f / dx dy)</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="btn-calculate-mixed" class="btn btn-primary btn-calc">✨ Calcular Derivada Mixta ✨</button>
+      
+      <div id="mixed-results-display" class="results-box" style="margin-top: 15px;">
+        <p class="placeholder-text">Los pasos detallados de la derivada parcial mixta aparecerán aquí.</p>
+      </div>
+    </section>
+
+    <section class="card graph-section">
+      <h2>3. Gráfica Interactiva</h2>
+      <div class="chart-wrapper">
+        <div id="math-chart-container" style="width: 100%; height: 100%;"></div>
+      </div>
+    </section>
+  </main>
+
+  <button id="btn-floating-help" class="floating-help-btn" title="¿Cómo usar la app?">?</button>
+
+  <div id="tutorial-modal" class="modal-tutorial-overlay">
+    <div class="modal-tutorial-card">
+      <button id="modal-close" class="modal-close-btn">×</button>
+      <h2 style="color: #2e86de; text-align: center; font-size: 1.5rem;">Guía Rápida de la Calculadora</h2>
+      <p style="text-align: center; color: #57606f; font-size: 0.95rem; margin-top: 5px;">Sigue estos sencillos pasos para empezar a calcular:</p>
+      
+      <div class="tutorial-steps-container">
+        
+        <div class="step-card">
+          <h4>1. Escribe tu función</h4>x
+          <img src="Entrada_Datos.png" alt="Paso 1 Guía" class="tutorial-img">
+          <span style="font-size: 0.85rem; color: #747b88;">Usa el teclado o botones rápidos.</span>
+        </div>
+
+        <div class="step-card">
+          <h4>2. Elige la Operación</h4>
+          <img src="Seleccionar_Opcion.png" alt="Paso 2 Guía" class="tutorial-img">
+          <span style="font-size: 0.85rem; color: #747b88;">Deriva o integra cuantas veces quieras.</span>
+        </div>
+
+        <div class="step-card">
+          <h4>3. ¡Mira el Gráfico!</h4>
+          <img src="Observar_Resultados.png" alt="Paso 3 Guía" class="tutorial-img">
+          <span style="font-size: 0.85rem; color: #747b88;">Observa el resultado paso a paso.</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="lightbox-modal" class="lightbox-overlay">
+    <button id="lightbox-close" class="lightbox-close-btn">×</button>
+    <img id="lightbox-img" src="" alt="Zoom Imagen Guía" class="lightbox-content-img">
+  </div>
+
+  
+  <footer class="app-footer">
+    <p>Creado para aprender cálculo de manera fácil e interactiva</p>
+    <div class="developer-credits">
+      <strong>
+        Desarrollado por:
+        Aaron Cisneros Flores
+        Delfin Rodriguez Anxe Susana
+        Adrian Bautista Albino
+	Cristopher Moreno Garcia
+      </strong> Equipo de Ingeniería de Software UPVM
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

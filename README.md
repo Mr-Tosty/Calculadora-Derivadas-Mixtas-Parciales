@@ -1,73 +1,84 @@
-# 🧮 Calculadora de Variables y Parciales
+#  Calculadora de Variables y Parciales
 
-Una aplicación web ligera y autocontenida en un solo archivo (`index.html`), desarrollada únicamente con **HTML5, CSS3 y JavaScript puro**. Diseñada para realizar cálculos de variables, evaluar expresiones parciales y obtener resultados en tiempo real sin necesidad de servidores ni dependencias externas.
-
----
-
-## ✨ Características Principales
-
-* **Arquitectura de Archivo Único:** Todo el código (estructura, estilos y lógica) vive dentro de un único archivo `.html`, lo que facilita su transporte, respaldo y despliegue.
-* **Cálculo de Variables:** Permite definir, asignar y reutilizar variables dinámicas dentro de tus operaciones.
-* **Evaluación de Parciales:** Desglosa y calcula resultados intermedios o subtotales antes de llegar al resultado final.
-* **Cero Dependencias:** No requiere Node.js, npm, frameworks ni conexión a internet para funcionar.
-* **Multiplataforma:** Compatible con cualquier navegador web moderno (Chrome, Firefox, Edge, Safari) en computadoras o dispositivos móviles.
-* **Interfaz Responsiva:** Diseño limpio que se adapta a distintos tamaños de pantalla.
+Una aplicación web ligera y directa desarrollada íntegramente con tecnologías nativas (**HTML5, CSS3 y JavaScript**), diseñada para calcular variables y derivadas/resultados parciales de manera rápida, visual e intuitiva sin necesidad de servidores ni dependencias externas.
 
 ---
 
-## ⚙️ ¿Cómo funciona?
+##  Características Principales
 
-La aplicación opera completamente del lado del cliente (en el navegador del usuario) siguiendo este flujo:
-
-1. **Entrada de Datos:** El usuario ingresa valores numéricos, asigna nombres a variables ejmplo: `x = 10`, `iva = 0.16` o escribe fórmulas parciales en la interfaz.
-2. **Procesamiento en Memoria:** JavaScript captura los eventos del DOM, almacena las variables en un objeto de estado temporal y evalúa las expresiones matemáticas de forma segura.
-3. **Cálculo de Parciales:** Cada bloque o sección calcula su propio subtotal de manera independiente.
-4. **Renderizado Instantáneo:** Los resultados parciales y el total general se actualizan automáticamente en pantalla sin recargar la página y sus graficos.
-
----
-
-## 🚀 Instalación y Uso
-
-Al tratarse de una aplicación estática de un solo archivo, no requiere un proceso de instalación complejo.
-
-### Opción 1: Ejecución directa (Más rápida)
-1. Descarga el archivo `index.html` (o clona este repositorio).
-2. Ubica el archivo en tu computadora.
-3. Haz **doble clic** sobre `index.html` para abrirlo directamente en tu navegador web predeterminado.
-
-### Opción 2: Usando un servidor local (Opcional, para desarrollo)
-Si deseas modificar el código y ver los cambios en vivo:
-1. Abre la carpeta del proyecto en **Visual Studio Code**.
-2. Instala la extensión **Live Server**.
-3. Haz clic derecho sobre `index.html` y selecciona **"Open with Live Server"**.
+* **Arquitectura Ligera:** 100% desarrollada en Vanilla JS, HTML y CSS puro. No requiere Node.js, npm, ni frameworks pesados.
+* **Cálculo en Tiempo Real / Instantáneo:** Procesamiento rápido de variables y parciales directamente en el navegador del cliente.
+* **Interfaz Intuitiva:** Selección clara de modos de operación y entrada de datos guiada.
+* **Multiplataforma:** Funciona en cualquier navegador moderno (Chrome, Firefox, Edge, Safari) tanto en escritorio como en dispositivos móviles.
 
 ---
 
 ##  Estructura del Proyecto
 
+El repositorio mantiene una estructura plana y limpia para facilitar su despliegue y mantenimiento:
+
 ```text
-├── index.html   # Contiene toda la estructura HTML
-├── styles.css   # Contiene los estilos
-├── script.js    #Contiene la logica de programacion
-└── README.md    # Documentación del proyecto
+C:.
+├── app.js                     # Lógica de cálculo, validación de datos y manipulación del DOM
+├── Entrada_Datos.png          # Captura de pantalla: interfaz de ingreso de variables
+├── index.html                 # Estructura principal y maquetado de la aplicación
+├── Observar_Resultados.png    # Captura de pantalla: visualización de los cálculos obtenidos
+├── Seleccionar_Opcion.png     # Captura de pantalla: menú de selección de tipo de cálculo
+└── styles.css                 # Hojas de estilo, diseño responsivo y temas visuales
 ```
 
 ---
 
-##  Tecnologías Utilizadas
+## 🚀 Instalación y Uso
 
-* **HTML5:** Estructura semántica de la calculadora y formularios de entrada.
-* **CSS3:** Estilos, variables CSS (`:root`), Flexbox/Grid para la distribución y diseño responsivo.
-* **JavaScript (ES6+):** Manipulación del DOM, gestión de estado en memoria y lógica matemática.
+Al tratarse de una aplicación web estática (Client-Side), no requiere un proceso de compilación ni instalación compleja.
+
+### Opción 1: Ejecución directa (Más rápida)
+1. Descarga o clona este repositorio en tu equipo local:
+   ```bash
+   git clone https://github.com
+   ```
+2. Abre la carpeta del proyecto.
+3. Haz doble clic sobre el archivo **`index.html`** para abrirlo directamente en tu navegador web predeterminado.
+
+### Opción 2: Usando un servidor local (Recomendado para desarrollo)
+Si utilizas Visual Studio Code:
+1. Abre la carpeta del proyecto en VS Code.
+2. Instala la extensión **Live Server**.
+3. Haz clic derecho sobre `index.html` y selecciona **"Open with Live Server"**.
+
+---
+
+## 🖥️ Flujo de Funcionamiento (Capturas de Pantalla)
+
+### 1. Seleccionar Opción
+El usuario elige el tipo de operación, variable o método parcial que desea resolver.
+
+### 2. Entrada de Datos
+Se despliegan los campos correspondientes donde se ingresan los valores numéricos o expresiones requeridas.
+
+### 3. Observar Resultados
+Al procesar la información, la aplicación muestra el desglose y el resultado final de forma clara.
+
+---
+
+## 🛠️ Documentación Técnica (Estructura del Código)
+
+* **`index.html`**: Contiene los contenedores principales (`<form>`, `<select>`, `<input>`) y vincula los estilos y scripts.
+* **`styles.css`**: Define la paleta de colores, el layout (Flexbox/Grid) y los estados visuales de botones y tarjetas de resultados.
+* **`app.js`**: 
+  * Escucha los eventos del DOM (`DOMContentLoaded`, `change`, `submit` / `click`).
+  * Valida que los campos de entrada no estén vacíos y contengan formatos válidos.
+  * Ejecuta las fórmulas matemáticas para el despeje de variables y cálculo de parciales.
+  * Inyecta dinámicamente los resultados en el HTML.
 
 ---
 
 ##  Contribuciones
 
-Las contribuciones son bienvenidas. Si deseas mejorar la calculadora:
+Las contribuciones son bienvenidas. Si deseas mejorar la interfaz o agregar nuevas fórmulas de cálculo:
 1. Haz un *Fork* del proyecto.
-2. Crea una rama para tu mejora (`git checkout -b feature/nueva-funcion`).
-3. Realiza tus cambios en el archivo `index.html` manteniendo la filosofía de cero dependencias.
-4. Envía un *Pull Request*.
-
----
+2. Crea una rama para tu mejora (`git checkout -b feature/NuevaFormula`).
+3. Haz *Commit* de tus cambios (`git commit -m 'Agrega cálculo de...'`).
+4. Haz *Push* a la rama (`git push origin feature/NuevaFormula`).
+5. Abre un *Pull Request*.
