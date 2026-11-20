@@ -48,29 +48,3 @@ Esta calculadora es un marco divertido para realizar operaciones de derivación 
 ### Guía Visual
 
 - **Guía Rápida de la Calculadora**: Ofrece una guía paso a paso para aprender de manera interactiva los cálculos matemáticos.
-
-## Desarrollo
-
-### Desarrolladores
-
-- **Aaron Cisneros Flores**
-- **Delfin Rodriguez Anxe Susana**
-- **Adrian Bautista Albino**
-- **Christopher Moreno Garcia**
-
-Equipo de Ingeniería de Software UPVM
-
-## Licencia
-
-Este proyecto está licenciado bajo la licencia MIT. Consulta el archivo `LICENSE` para detalles.
-
-## Contacto
-
-Si tienes alguna pregunta o necesitas ayuda con la calculadora, contáctanos a:
-
-- Correo Electrónico: contacto@calculadora-divertida.com
-- Teléfono: +52 123 456 7890
-
----
-
-Espero que esta descripción y guía te sean útiles para usar la calculadora de manera eficiente y divertida. ¡Disfruta aprendiendo de los cálculos matemáticos!
