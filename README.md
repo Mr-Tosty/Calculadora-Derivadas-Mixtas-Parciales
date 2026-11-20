@@ -73,12 +73,3 @@ Al procesar la información, la aplicación muestra el desglose y el resultado f
   * Inyecta dinámicamente los resultados en el HTML.
 
 ---
-
-##  Contribuciones
-
-Las contribuciones son bienvenidas. Si deseas mejorar la interfaz o agregar nuevas fórmulas de cálculo:
-1. Haz un *Fork* del proyecto.
-2. Crea una rama para tu mejora (`git checkout -b feature/NuevaFormula`).
-3. Haz *Commit* de tus cambios (`git commit -m 'Agrega cálculo de...'`).
-4. Haz *Push* a la rama (`git push origin feature/NuevaFormula`).
-5. Abre un *Pull Request*.
